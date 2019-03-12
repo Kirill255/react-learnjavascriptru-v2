@@ -1,68 +1,35 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# react-learnjavascriptru-v2
 
-In the project directory, you can run:
+## Related
 
-### `npm start`
+https://github.com/romabelka/basic-react-10-09
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## HT
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+##HT1.1 Починить закрытие статьи
+##HT1.2 Подключить календарь(https://github.com/gpbl/react-day-picker) с выбором диапазона дат, отображать этот диапазон текстом
+##HT1.3 Реализовать список комментариес к статье, открывать/закрывать по нажатию на кнопку(менять на ней текст)
+##HT1.4 Вынести функционал открытия/закрытия в декоратор
 
-### `npm test`
+##HT2.1 Анимировать список комментариев
+##HT2.2 Написать тесты на список комментариев
+##HT2.3 Написать для всего propTypes
+##HT2.4 Написать тест на закрытие статьи
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##HT3.1 Вынести состояние фильтров в стор
+##HT3.2 Показывать в ArticleList только отфильтрованные статьи
 
-### `npm run build`
+##HT4.1 Реализовать форму для добавления комментария в CommentList (user, text).
+##HT4.2 Переписать articles аналогично comments (id -> article)
+##HT4.3 Реализовать мидлвару для генерации случайных id
+##HT4.4 Реализовать добавление комментария к статье
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##HT5.1 Реализовать загрузку комментов к статье при открытии списка(/api/comment?article=56c782f18990ecf954f6e027)
+##HT5.2 Показывать лоадер при загрузке, загружать комменты только при первом открытии
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+##HT6.1 Починить баг при переходе сразу на страницу статьи
+##HT6.2 Реализовать страницу для пагинации ВСЕХ комментариев(/api/comment?limit=5&offset=10), загружать каждую страницу один раз
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+##HT7.1 Реализовать локализацию(en/ru), хранить словарь в контексте

@@ -3,6 +3,7 @@ import { findDOMNode } from "react-dom";
 import Select from "react-select";
 import ArticleList from "./components/article-list";
 import ArticlesChart from "./components/articles-chart";
+import UserForm from "./components/user-form";
 import articles from "./fixtures";
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <UserForm />
         <Select options={this.options} value={this.state.openItem} onChange={this.handleSelect} />
         <ArticleList ref={this.setArticleListRef} articles={articles} />
         <ArticlesChart articles={articles} />

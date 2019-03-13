@@ -8,8 +8,8 @@ export default (articlesState = defaultArticles, action) => {
   switch (type) {
     case DELETE_ARTICLE:
       return articlesState.filter((article) => article.id !== payload.id);
-    // https://eslint.org/docs/rules/default-case
-    // no default
+
+    default:
+      return articlesState;
   }
-  return articlesState;
 };

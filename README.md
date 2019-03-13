@@ -6,6 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 https://github.com/romabelka/basic-react-10-09
 
+## Tests
+
+https://github.com/airbnb/enzyme
+
+https://facebook.github.io/create-react-app/docs/running-tests
+
 ## HT
 
 ##HT1.1 Починить закрытие статьи

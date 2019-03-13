@@ -1,12 +1,9 @@
 import React from "react";
-import Enzyme, { mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { mount } from "enzyme";
 
 import CommentList from "./comment-list";
 import articles from "../../fixtures";
 const { comments } = articles[0];
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe("CommentList test", () => {
   it("should be closed by default", () => {

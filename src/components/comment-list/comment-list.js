@@ -5,27 +5,31 @@ import toggleOpen from "../../decorators/toggleOpen";
 import "./style.css";
 
 class CommentList extends Component {
-  static defaultProps = {
-    comments: []
-  };
+  // static defaultProps = {
+  //   comments: []
+  // };
 
   get getBody() {
-    const { comments, isOpen } = this.props;
+    const { comments = [], isOpen } = this.props;
     if (!isOpen) return null;
 
-    const body = comments.length ? (
+    return (
+      <div className="comment-list--body">
+        {comments.length ? this.comments : <h3 className="comment-list--empty">No comments yet</h3>}
+      </div>
+    );
+  }
+
+  get comments() {
+    return (
       <ul>
-        {comments.map((comment) => (
-          <li key={comment.id}>
+        {this.props.comments.map((comment) => (
+          <li key={comment.id} className="comment-list--item">
             <Comment comment={comment} />
           </li>
         ))}
       </ul>
-    ) : (
-      <h3>No comments yet</h3>
     );
-
-    return <div>{body}</div>;
   }
 
   render() {
@@ -33,11 +37,13 @@ class CommentList extends Component {
     const text = isOpen ? "hide comments" : "show comments";
     return (
       <div>
-        <button onClick={toggleOpen}>{text}</button>
+        <button onClick={toggleOpen} className="comment-list--btn">
+          {text}
+        </button>
         <CSSTransition
           transitionName="comments"
           transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
+          transitionLeaveTimeout={500}
         >
           {this.getBody}
         </CSSTransition>

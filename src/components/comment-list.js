@@ -7,17 +7,18 @@ class CommentList extends Component {
     const { comments, isOpen } = this.props;
     if (!isOpen) return null;
 
-    const body = comments.length ? (
-      <ul>
-        {comments.map((comment) => (
-          <li key={comment.id}>
-            <Comment comment={comment} />
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <h3>No comments yet</h3>
-    );
+    const body =
+      comments && comments.length ? (
+        <ul>
+          {comments.map((comment) => (
+            <li key={comment.id}>
+              <Comment comment={comment} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h3>No comments yet</h3>
+      );
 
     return <div>{body}</div>;
   }

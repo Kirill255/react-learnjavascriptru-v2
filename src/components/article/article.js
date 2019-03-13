@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import CommentList from "./comment-list";
+import CSSTransition from "react-addons-css-transition-group";
+import CommentList from "../comment-list";
+import "./style.css";
 
 class Article extends PureComponent {
   static propTypes = {
@@ -50,7 +52,15 @@ class Article extends PureComponent {
             {isOpen ? "close" : "open"}
           </button>
         </h3>
-        {this.body}
+        <CSSTransition
+          transitionName="article"
+          transitionAppear
+          transitionEnterTimeout={500}
+          transitionAppearTimeout={1000}
+          transitionLeaveTimeout={300}
+        >
+          {this.body}
+        </CSSTransition>
       </div>
     );
   }

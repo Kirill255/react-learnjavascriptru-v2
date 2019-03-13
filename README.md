@@ -6,6 +6,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 https://github.com/romabelka/basic-react-10-09
 
+## React
+
+### React Animation
+
+https://reactjs.org/docs/animation.html
+
+https://github.com/reactjs/react-transition-group
+
+https://github.com/reactjs/react-transition-group/tree/v1-stable
+
 ## Tests
 
 https://github.com/airbnb/enzyme

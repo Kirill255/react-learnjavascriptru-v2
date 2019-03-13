@@ -32,9 +32,24 @@ export class ArticleList extends Component {
   }
 }
 
-export default connect((state) => ({
-  articles: state.articles
-}))(accordion(ArticleList));
+export default connect((state) => {
+  const {
+    selected,
+    dataRange: { from, to }
+  } = state.filters;
+
+  const filtratedArticles = state.articles.filter((article) => {
+    const published = Date.parse(article.date);
+    return (
+      (!selected.length || selected.find((selected) => selected.value === article.id)) &&
+      (!from || !to || (published > from && published < to))
+    );
+  });
+
+  return {
+    articles: filtratedArticles
+  };
+})(accordion(ArticleList));
 
 /*
 Для тестирования сделали возможность экспортировать класс отдельно и весь компонент завёрнутый в декоратор:

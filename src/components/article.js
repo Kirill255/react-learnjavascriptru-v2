@@ -1,7 +1,17 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import CommentList from "./comment-list";
 
 class Article extends PureComponent {
+  static propTypes = {
+    article: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string
+    }).isRequired,
+    isOpen: PropTypes.bool,
+    toggleOpen: PropTypes.func.isRequired
+  };
+
   state = {
     hasError: false
   };

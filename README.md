@@ -16,6 +16,12 @@ https://github.com/reactjs/react-transition-group
 
 https://github.com/reactjs/react-transition-group/tree/v1-stable
 
+### React-redux
+
+1. Установил `npm i -S react-redux@5.x`, потому что с 6.x пока наблюдаются проблемы/баги
+
+https://github.com/reduxjs/react-redux/issues/1177
+
 ## Tests
 
 https://github.com/airbnb/enzyme

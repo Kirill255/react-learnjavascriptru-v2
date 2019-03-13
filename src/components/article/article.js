@@ -1,7 +1,9 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import CSSTransition from "react-addons-css-transition-group";
 import CommentList from "../comment-list/comment-list";
+import { deleteArticle } from "../../actions";
 import "./style.css";
 
 class Article extends PureComponent {
@@ -42,6 +44,11 @@ class Article extends PureComponent {
     );
   }
 
+  handleDelete = () => {
+    const { article, deleteArticle } = this.props;
+    deleteArticle(article.id);
+  };
+
   render() {
     const { article, isOpen } = this.props;
     return (
@@ -51,6 +58,7 @@ class Article extends PureComponent {
           <button className="article--btn" onClick={this.handleClick}>
             {isOpen ? "close" : "open"}
           </button>
+          <button onClick={this.handleDelete}>delete me</button>
         </h3>
         <CSSTransition
           transitionName="article"
@@ -66,4 +74,7 @@ class Article extends PureComponent {
   }
 }
 
-export default Article;
+export default connect(
+  null,
+  { deleteArticle }
+)(Article);

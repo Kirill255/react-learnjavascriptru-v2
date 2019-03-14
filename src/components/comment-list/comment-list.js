@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import CSSTransition from "react-addons-css-transition-group";
 import Comment from "../comment";
 import toggleOpen from "../../decorators/toggleOpen";
@@ -32,9 +32,9 @@ class CommentList extends Component {
   get comments() {
     return (
       <ul>
-        {this.props.comments.map((comment) => (
-          <li key={comment.id} className="comment-list--item">
-            <Comment comment={comment} />
+        {this.props.comments.map((id) => (
+          <li key={id} className="comment-list--item">
+            <Comment id={id} />
           </li>
         ))}
       </ul>
@@ -61,11 +61,7 @@ class CommentList extends Component {
   }
 }
 
-// export default connect((state, ownProps) => ({
-//   comments: (ownProps.comments || []).map((id) =>
-//     state.comments.find((comment) => comment.id === id)
-//   )
-// }))(toggleOpen(CommentList));
+export default toggleOpen(CommentList);
 
 /*
 props comments который приходит из connect, он имеет больший приоритет, чем собстенный props компонента, поэтому у нас нет конфликта имён(они как бы перезатираются), мы в connect обращаемся к comments самого компонента, это массив id'шников который приходит из article.js, дальше на основе этого массива высчитываем все комментарии и записываем в свойство comments, теперь в компоненте в this.props.comments приходит массив с комментриями из connect
@@ -90,6 +86,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 тоесть наши props comments из компонента и props comments из connect просто мёржатся в новый объект
 */
 
+/*
 export default connect(
   (state) => ({
     comments: state.comments
@@ -101,3 +98,4 @@ export default connect(
     )
   })
 )(toggleOpen(CommentList));
+*/

@@ -28,6 +28,10 @@ https://github.com/airbnb/enzyme
 
 https://facebook.github.io/create-react-app/docs/running-tests
 
+## Other
+
+1. https://github.com/paularmstrong/normalizr
+
 ## HT
 
 ##HT1.1 Починить закрытие статьи

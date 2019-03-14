@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { filtratedArticles } from "../selectors";
 import Article from "./article/article";
 import accordion from "../decorators/accordion";
 
@@ -33,21 +34,8 @@ export class ArticleList extends Component {
 }
 
 export default connect((state) => {
-  const {
-    selected,
-    dataRange: { from, to }
-  } = state.filters;
-
-  const filtratedArticles = state.articles.filter((article) => {
-    const published = Date.parse(article.date);
-    return (
-      (!selected.length || selected.find((selected) => selected.value === article.id)) &&
-      (!from || !to || (published > from && published < to))
-    );
-  });
-
   return {
-    articles: filtratedArticles
+    articles: filtratedArticles(state)
   };
 })(accordion(ArticleList));
 

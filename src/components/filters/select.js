@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import { connect } from "react-redux";
+import { articlesSelector, selectedSelector } from "../../selectors";
 import { changeSelection } from "../../actions";
 
 class SelectFilter extends Component {
@@ -37,8 +38,8 @@ class SelectFilter extends Component {
 
 export default connect(
   (state) => ({
-    articles: state.articles,
-    selected: state.filters.selected
+    articles: articlesSelector(state),
+    selected: selectedSelector(state)
   }),
   { changeSelection }
 )(SelectFilter);

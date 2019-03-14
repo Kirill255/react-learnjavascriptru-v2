@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import CSSTransition from "react-addons-css-transition-group";
 import Comment from "../comment";
 import toggleOpen from "../../decorators/toggleOpen";
@@ -60,4 +61,43 @@ class CommentList extends Component {
   }
 }
 
-export default toggleOpen(CommentList);
+// export default connect((state, ownProps) => ({
+//   comments: (ownProps.comments || []).map((id) =>
+//     state.comments.find((comment) => comment.id === id)
+//   )
+// }))(toggleOpen(CommentList));
+
+/*
+props comments который приходит из connect, он имеет больший приоритет, чем собстенный props компонента, поэтому у нас нет конфликта имён(они как бы перезатираются), мы в connect обращаемся к comments самого компонента, это массив id'шников который приходит из article.js, дальше на основе этого массива высчитываем все комментарии и записываем в свойство comments, теперь в компоненте в this.props.comments приходит массив с комментриями из connect
+ps: по идее нужно переименовать чтобы было очевидно, что и откуда например:
+export default connect((state, ownProps) => ({
+  commentsFromConnect: ownProps.comments.map((id) => state.comments.find((comment) => comment.id === id))
+}))(toggleOpen(CommentList));
+и обращаться в компоненте как this.props.commentsFromConnect,
+*/
+
+/*
+https://habr.com/ru/company/ruvds/blog/423157/
+https://habr.com/ru/post/314582/
+http://enthudrives.com/blog/connect-with-mergeprops/
+*/
+
+/*
+ещё есть 3 аргумент mergeProps, в первом варианте происходило примерно тоже самое только не очевидно, если 3 аргумент не задан то используется её стандартная реализация:
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return Object.assign({}, ownProps, stateProps, dispatchProps)
+}
+тоесть наши props comments из компонента и props comments из connect просто мёржатся в новый объект
+*/
+
+export default connect(
+  (state) => ({
+    comments: state.comments
+  }),
+  null,
+  (propsFromState, propsFromDispatch, ownProps) => ({
+    comments: (ownProps.comments || []).map((id) =>
+      propsFromState.comments.find((comment) => comment.id === id)
+    )
+  })
+)(toggleOpen(CommentList));

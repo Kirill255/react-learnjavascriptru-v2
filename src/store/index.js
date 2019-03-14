@@ -1,8 +1,20 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import reducer from "../reducer";
 import logger from "../middlewares/logger";
 
-const enhancer = applyMiddleware(logger);
+// https://github.com/reduxjs/redux-devtools-extension#12-advanced-store-setup
+const composeEnhancers =
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+      })
+    : compose;
+
+const enhancer = composeEnhancers(
+  applyMiddleware(logger)
+  // other store enhancers if any
+);
+
 const store = createStore(reducer, enhancer);
 // https://github.com/reduxjs/redux/pull/2128#issuecomment-263581319
 // как я понял(возможно не верно!), по идее createStore принимает 3 аргумента, и enhancer идёт третьим `const store = createStore(reducer, {}, enhancer);`, но если вы называете enhancer именно `enhancer` (ведь это просто название переменной, мы можем назвать её как угодно или вообще записать без переменной), то мы можем опустить второй параметр вообще `const store = createStore(reducer, enhancer);`

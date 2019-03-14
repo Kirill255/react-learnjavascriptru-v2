@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
+import logger from "redux-logger";
 import reducer from "../reducer";
-import logger from "../middlewares/logger";
+// import logger from "../middlewares/logger";
 
 // https://github.com/reduxjs/redux-devtools-extension#12-advanced-store-setup
 const composeEnhancers =

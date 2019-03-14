@@ -22,3 +22,17 @@ export const filtratedArticles = createSelector(
     });
   }
 );
+
+export const commentsSelector = (state) => state.comments;
+export const idSelector = (_, props) => props.id;
+
+export const createCommentSelector = () =>
+  createSelector(
+    commentsSelector,
+    idSelector,
+    (comments, id) => {
+      console.log("---", "comment selector", id);
+
+      return comments.find((comment) => comment.id === id);
+    }
+  );

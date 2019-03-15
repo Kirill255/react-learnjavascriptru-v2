@@ -22,6 +22,18 @@ https://github.com/reactjs/react-transition-group/tree/v1-stable
 
 https://github.com/reduxjs/react-redux/issues/1177
 
+### Redux middlewares for action side effects
+
+https://github.com/redux-observable/redux-observable
+
+https://github.com/redux-saga/redux-saga
+
+https://github.com/redux-utilities/redux-promise
+
+https://github.com/pburtchaell/redux-promise-middleware
+
+https://github.com/reduxjs/redux-thunk
+
 ## Tests
 
 https://github.com/airbnb/enzyme

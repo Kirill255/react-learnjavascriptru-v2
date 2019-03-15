@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { filtratedArticles } from "../selectors";
 import Article from "./article/article";
 import accordion from "../decorators/accordion";
+import { loadAllArticles } from "../actions";
 
 export class ArticleList extends Component {
   static propTypes = {
@@ -33,11 +34,14 @@ export class ArticleList extends Component {
   }
 }
 
-export default connect((state) => {
-  return {
-    articles: filtratedArticles(state)
-  };
-})(accordion(ArticleList));
+export default connect(
+  (state) => {
+    return {
+      articles: filtratedArticles(state)
+    };
+  },
+  { fetchData: loadAllArticles }
+)(accordion(ArticleList));
 
 /*
 Для тестирования сделали возможность экспортировать класс отдельно и весь компонент завёрнутый в декоратор:

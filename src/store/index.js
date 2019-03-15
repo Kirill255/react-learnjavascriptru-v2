@@ -3,6 +3,7 @@ import logger from "redux-logger";
 import reducer from "../reducer";
 // import logger from "../middlewares/logger";
 import randomId from "../middlewares/randomId";
+import api from "../middlewares/api";
 
 // https://github.com/reduxjs/redux-devtools-extension#12-advanced-store-setup
 const composeEnhancers =
@@ -13,7 +14,7 @@ const composeEnhancers =
     : compose;
 
 const enhancer = composeEnhancers(
-  applyMiddleware(randomId, logger)
+  applyMiddleware(randomId, api, logger)
   // other store enhancers if any
 );
 

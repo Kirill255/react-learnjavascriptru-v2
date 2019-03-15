@@ -1,7 +1,8 @@
 import { createSelector } from "reselect";
 
 // export const articlesSelector = (state) => state.articles;
-export const articlesMapSelector = (state) => state.articles;
+export const articlesMapSelector = (state) => state.articles.entities;
+export const articlesLoadingSelector = (state) => state.articles.loading;
 export const dataRangeSelector = (state) => state.filters.dataRange;
 export const selectedSelector = (state) => state.filters.selected;
 
@@ -39,6 +40,6 @@ export const createCommentSelector = () =>
     (comments, id) => {
       console.log("---", "comment selector", id);
 
-      return comments.get(id)
+      return comments.get(id);
     }
   );

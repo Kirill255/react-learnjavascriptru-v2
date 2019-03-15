@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { filtratedArticles } from "../selectors";
+import { filtratedArticles, articlesLoadingSelector } from "../selectors";
 import Article from "./article/article";
+import Loader from "./loader";
 import accordion from "../decorators/accordion";
 import { loadAllArticles } from "../actions";
 
@@ -30,6 +31,7 @@ export class ArticleList extends Component {
   }
 
   render() {
+    if (this.props.loading) return <Loader />;
     return <ul>{this.body}</ul>;
   }
 }
@@ -37,7 +39,8 @@ export class ArticleList extends Component {
 export default connect(
   (state) => {
     return {
-      articles: filtratedArticles(state)
+      articles: filtratedArticles(state),
+      loading: articlesLoadingSelector(state)
     };
   },
   { fetchData: loadAllArticles }

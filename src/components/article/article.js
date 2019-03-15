@@ -5,6 +5,7 @@ import CSSTransition from "react-addons-css-transition-group";
 import CommentList from "../comment-list/comment-list";
 import Loader from "../loader";
 import { deleteArticle, loadArticleById } from "../../actions";
+import { articleSelector } from "../../selectors";
 import "./style.css";
 
 class Article extends PureComponent {
@@ -12,20 +13,20 @@ class Article extends PureComponent {
     article: PropTypes.shape({
       title: PropTypes.string.isRequired,
       text: PropTypes.string
-    }).isRequired,
+    }),
     isOpen: PropTypes.bool,
-    toggleOpen: PropTypes.func.isRequired
+    toggleOpen: PropTypes.func
   };
 
   state = {
     hasError: false
   };
 
-  componentDidUpdate(oldProps) {
-    const { isOpen, article, loadArticleById } = this.props;
+  componentDidMount() {
+    const { article, id, loadArticleById } = this.props;
 
-    if (!oldProps.isOpen && isOpen && !article.text) {
-      loadArticleById(article.id);
+    if (!article || !article.text) {
+      loadArticleById(id);
     }
   }
 
@@ -61,6 +62,7 @@ class Article extends PureComponent {
 
   render() {
     const { article, isOpen } = this.props;
+    if (!article) return null;
     return (
       <div>
         <h3>
@@ -85,6 +87,8 @@ class Article extends PureComponent {
 }
 
 export default connect(
-  null,
+  (state, ownProps) => ({
+    article: articleSelector(state, ownProps)
+  }),
   { deleteArticle, loadArticleById }
 )(Article);

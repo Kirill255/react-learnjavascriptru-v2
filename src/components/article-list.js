@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { filtratedArticles, articlesLoadingSelector } from "../selectors";
-import Article from "./article/article";
 import Loader from "./loader";
-import accordion from "../decorators/accordion";
 import { loadAllArticles } from "../actions";
 
 export class ArticleList extends Component {
@@ -22,10 +21,12 @@ export class ArticleList extends Component {
   }
 
   get body() {
-    const { articles, openItemId, toggleOpenItem } = this.props;
+    const { articles } = this.props;
     return articles.map((article) => (
       <li key={article.id} className="article-list--item">
-        <Article article={article} isOpen={openItemId === article.id} toggleOpen={toggleOpenItem} />
+        <NavLink to={`/articles/${article.id}`} activeStyle={{ color: "red" }}>
+          {article.title}
+        </NavLink>
       </li>
     ));
   }
@@ -44,7 +45,7 @@ export default connect(
     };
   },
   { fetchData: loadAllArticles }
-)(accordion(ArticleList));
+)(ArticleList);
 
 /*
 Для тестирования сделали возможность экспортировать класс отдельно и весь компонент завёрнутый в декоратор:

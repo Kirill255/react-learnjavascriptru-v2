@@ -43,3 +43,9 @@ export const createCommentSelector = () =>
       return comments.get(id);
     }
   );
+
+export const articleSelector = createSelector(
+  articlesMapSelector,
+  idSelector,
+  (articles, id) => articles.get(id)
+);

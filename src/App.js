@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, NavLink } from "react-router-dom";
-import ArticleList from "./components/article-list";
+import Articles from "./components/routes/articles";
 import UserForm from "./components/user-form";
 import Filters from "./components/filters";
 import Counter from "./components/counter";
@@ -34,7 +34,7 @@ class App extends Component {
         </div>
         <Route path="/counter" component={Counter} />
         <Route path="/filters" component={Filters} />
-        <Route path="/articles" component={ArticleList} />
+        <Route path="/articles" component={Articles} />
       </div>
     );
   }

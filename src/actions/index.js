@@ -4,7 +4,8 @@ import {
   CHANGE_SELECTION,
   CHANGE_DATE_RANGE,
   ADD_COMMENT,
-  LOAD_ALL_ARTICLES
+  LOAD_ALL_ARTICLES,
+  LOAD_ARTICLE
 } from "../constants";
 
 export const increment = () => {
@@ -46,5 +47,13 @@ export const loadAllArticles = () => {
   return {
     type: LOAD_ALL_ARTICLES,
     callAPI: "/api/article"
+  };
+};
+
+export const loadArticleById = (id) => {
+  return {
+    type: LOAD_ARTICLE,
+    payload: { id },
+    callAPI: `/api/article/${id}`
   };
 };

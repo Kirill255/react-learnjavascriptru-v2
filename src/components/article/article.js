@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import CSSTransition from "react-addons-css-transition-group";
 import CommentList from "../comment-list/comment-list";
-import { deleteArticle } from "../../actions";
+import Loader from "../loader";
+import { deleteArticle, loadArticleById } from "../../actions";
 import "./style.css";
 
 class Article extends PureComponent {
@@ -20,6 +21,14 @@ class Article extends PureComponent {
     hasError: false
   };
 
+  componentDidUpdate(oldProps) {
+    const { isOpen, article, loadArticleById } = this.props;
+
+    if (!oldProps.isOpen && isOpen && !article.text) {
+      loadArticleById(article.id);
+    }
+  }
+
   componentDidCatch(err) {
     // отлавливает ошибки ниже по иерархии, тоесть ошибки которые случились в childrens, в нашем случае в CommentList, поэтому стоит перехватывать ошибки на самом верхнем уровне, в App
     // в dev режиме всё ровно будет отображаться overlay с ошибкой, но его можно закрыть, в prod режиме всё будет нормально, без overlay
@@ -35,6 +44,7 @@ class Article extends PureComponent {
     const { isOpen, article } = this.props;
     if (!isOpen) return null;
     if (this.state.hasError) return <div>Some Error in this article</div>;
+    if (article.loading) return <Loader />;
 
     return (
       <section className="article--body">
@@ -76,5 +86,5 @@ class Article extends PureComponent {
 
 export default connect(
   null,
-  { deleteArticle }
+  { deleteArticle, loadArticleById }
 )(Article);

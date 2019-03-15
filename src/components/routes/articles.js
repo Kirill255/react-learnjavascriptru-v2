@@ -10,6 +10,7 @@ export default class Articles extends Component {
   };
 
   render() {
+    console.log("---", "articles list match:", this.props.match);
     return (
       <div>
         <ArticleList />

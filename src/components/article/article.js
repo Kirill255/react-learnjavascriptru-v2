@@ -11,7 +11,7 @@ import "./style.css";
 class Article extends PureComponent {
   static propTypes = {
     article: PropTypes.shape({
-      title: PropTypes.string.isRequired,
+      title: PropTypes.string,
       text: PropTypes.string
     }),
     isOpen: PropTypes.bool,

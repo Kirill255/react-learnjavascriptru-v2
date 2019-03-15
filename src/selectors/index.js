@@ -7,7 +7,7 @@ export const selectedSelector = (state) => state.filters.selected;
 
 export const articlesListSelector = createSelector(
   articlesMapSelector,
-  (articlesMap) => Object.values(articlesMap)
+  (articlesMap) => articlesMap.valueSeq().toArray()
 );
 
 export const filtratedArticles = createSelector(
@@ -39,6 +39,6 @@ export const createCommentSelector = () =>
     (comments, id) => {
       console.log("---", "comment selector", id);
 
-      return comments[id];
+      return comments.get(id)
     }
   );

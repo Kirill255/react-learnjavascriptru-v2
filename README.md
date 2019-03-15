@@ -28,6 +28,12 @@ https://github.com/airbnb/enzyme
 
 https://facebook.github.io/create-react-app/docs/running-tests
 
+## Immutable
+
+https://github.com/immutable-js/immutable-js
+
+https://github.com/mweststrate/immer
+
 ## Other
 
 1. https://github.com/paularmstrong/normalizr

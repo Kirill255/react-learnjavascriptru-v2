@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
+import { loadArticleComments } from "../../actions";
 import CSSTransition from "react-addons-css-transition-group";
 import Comment from "../comment";
+import Loader from "../loader";
 import CommentForm from "../comment-form/comment-form";
 import toggleOpen from "../../decorators/toggleOpen";
 import "./style.css";
@@ -19,12 +21,21 @@ class CommentList extends Component {
   //   comments: []
   // };
 
+  componentDidUpdate(oldProps) {
+    const { isOpen, article, loadArticleComments } = this.props;
+    if (isOpen && !oldProps.isOpen && !article.commentsLoading && !article.commentsLoaded) {
+      loadArticleComments(article.id);
+    }
+  }
+
   get getBody() {
     const {
-      article: { id, comments = [] },
+      article: { id, comments, commentsLoading, commentsLoaded },
       isOpen
     } = this.props;
     if (!isOpen) return null;
+    if (commentsLoading) return <Loader />;
+    if (!commentsLoaded) return null;
 
     return (
       <div className="comment-list--body">
@@ -66,7 +77,10 @@ class CommentList extends Component {
   }
 }
 
-export default toggleOpen(CommentList);
+export default connect(
+  null,
+  { loadArticleComments }
+)(toggleOpen(CommentList));
 
 /*
 props comments который приходит из connect, он имеет больший приоритет, чем собстенный props компонента, поэтому у нас нет конфликта имён(они как бы перезатираются), мы в connect обращаемся к comments самого компонента, это массив id'шников который приходит из article.js, дальше на основе этого массива высчитываем все комментарии и записываем в свойство comments, теперь в компоненте в this.props.comments приходит массив с комментриями из connect

@@ -4,6 +4,7 @@ import {
   ADD_COMMENT,
   LOAD_ALL_ARTICLES,
   LOAD_ARTICLE,
+  LOAD_ARTICLE_COMMENTS,
   START,
   SUCCESS
 } from "../constants";
@@ -15,7 +16,9 @@ const ArticleRecord = Record({
   text: null,
   date: null,
   comments: [],
-  loading: false
+  loading: false,
+  commentsLoading: false,
+  commentsLoaded: false
 });
 
 const ReducerRecord = Record({
@@ -51,6 +54,14 @@ export default (articlesState = new ReducerRecord(), action) => {
       return articlesState.updateIn(["entities", payload.articleId, "comments"], (comments) =>
         comments.concat(randomId)
       );
+
+    case LOAD_ARTICLE_COMMENTS + START:
+      return articlesState.setIn(["entities", payload.articleId, "commentsLoading"], true);
+
+    case LOAD_ARTICLE_COMMENTS + SUCCESS:
+      return articlesState
+        .setIn(["entities", payload.articleId, "commentsLoading"], false)
+        .setIn(["entities", payload.articleId, "commentsLoaded"], true);
 
     default:
       return articlesState;

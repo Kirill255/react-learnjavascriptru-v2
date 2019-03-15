@@ -6,6 +6,8 @@ import Article from "../article/article";
 export default class Articles extends Component {
   getArticle = ({ match }) => {
     console.log("---", "article match: ", match);
+    if (!match) return <h1>Select an Article</h1>;
+
     return <Article id={match.params.id} isOpen key={match.params.id} />;
   };
 
@@ -14,7 +16,8 @@ export default class Articles extends Component {
     return (
       <div>
         <ArticleList />
-        <Route path="/articles/:id" render={this.getArticle} />
+        {/* <Route path="/articles/:id" render={this.getArticle} /> */}
+        <Route path="/articles/:id" children={this.getArticle} exact />
       </div>
     );
   }

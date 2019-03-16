@@ -1,10 +1,14 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import CommentsPagination from "../comments-pagination";
 
 // component
-const CommentsPage = () => {
-  return <Route path="/comments/:page" render={getCommentsPaginator} />;
+const CommentsPage = ({ match }) => {
+  return match.isExact ? (
+    <Redirect to="/comments/1" />
+  ) : (
+    <Route path="/comments/:page" render={getCommentsPaginator} />
+  );
 };
 
 // handler component

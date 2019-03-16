@@ -18,7 +18,10 @@ https://github.com/reactjs/react-transition-group/tree/v1-stable
 
 ### React-redux
 
-1. Установил `npm i -S react-redux@5.x`, потому что с 6.x пока наблюдаются проблемы/баги
+Установил `npm i -S react-redux@5.x`, потому что с 6.x пока наблюдаются проблемы/баги
+
+**Update**: установил 6.x версию `npm i react-redux -S` всё работает!
+
 
 https://github.com/reduxjs/react-redux/issues/1177
 

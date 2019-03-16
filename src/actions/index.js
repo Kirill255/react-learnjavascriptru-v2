@@ -1,3 +1,5 @@
+import { push } from "connected-react-router";
+
 import {
   INCREMENT,
   DELETE_ARTICLE,
@@ -72,7 +74,10 @@ export const loadArticleById = (id) => (dispatch) => {
   });
 
   fetch(`/api/article/${id}`)
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.status >= 400) throw new Error(res.statusText);
+      return res.json();
+    })
     .then((response) =>
       dispatch({
         type: LOAD_ARTICLE + SUCCESS,
@@ -80,13 +85,15 @@ export const loadArticleById = (id) => (dispatch) => {
         response
       })
     )
-    .catch((error) =>
+    .catch((error) => {
       dispatch({
         type: LOAD_ARTICLE + FAIL,
         payload: { id },
         error
-      })
-    );
+      });
+
+      dispatch(push("/error"));
+    });
 };
 
 export const loadArticleComments = (articleId) => {

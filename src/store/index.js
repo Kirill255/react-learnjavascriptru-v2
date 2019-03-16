@@ -1,4 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
+import { routerMiddleware } from "connected-react-router";
+import history from "../history";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import reducer from "../reducer";
@@ -15,7 +17,7 @@ const composeEnhancers =
     : compose;
 
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk, randomId, api, logger)
+  applyMiddleware(thunk, routerMiddleware(history), randomId, api, logger)
   // other store enhancers if any
 );
 

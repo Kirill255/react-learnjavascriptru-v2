@@ -20,12 +20,13 @@ https://github.com/reactjs/react-transition-group/tree/v1-stable
 
 Установил `npm i -S react-redux@5.x`, потому что с 6.x пока наблюдаются проблемы/баги
 
-**Update**: установил 6.x версию `npm i react-redux -S` всё работает!
-
-
 https://github.com/reduxjs/react-redux/issues/1177
 
+**Update**: установил 6.x версию `npm i react-redux -S` всё работает!
+
 ### Redux middlewares for action side effects
+
+https://github.com/zerobias/effector
 
 https://github.com/redux-observable/redux-observable
 
@@ -36,6 +37,10 @@ https://github.com/redux-utilities/redux-promise
 https://github.com/pburtchaell/redux-promise-middleware
 
 https://github.com/reduxjs/redux-thunk
+
+### Internationalization
+
+https://github.com/yahoo/react-intl
 
 ## Tests
 
@@ -51,7 +56,13 @@ https://github.com/mweststrate/immer
 
 ## Other
 
-1. https://github.com/paularmstrong/normalizr
+https://github.com/paularmstrong/normalizr
+
+https://github.com/erikras/ducks-modular-redux
+
+https://github.com/wix/redux-cornell
+
+https://github.com/Netflix/falcor
 
 ## HT
 

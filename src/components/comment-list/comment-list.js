@@ -8,6 +8,7 @@ import Loader from "../loader";
 import CommentForm from "../comment-form/comment-form";
 import toggleOpen from "../../decorators/toggleOpen";
 import { Consumer as UserConsumer } from "../../contexts/user";
+import i18n from "../../i18n/i18n";
 import "./style.css";
 
 class CommentList extends Component {
@@ -32,7 +33,8 @@ class CommentList extends Component {
   get getBody() {
     const {
       article: { id, comments, commentsLoading, commentsLoaded },
-      isOpen
+      isOpen,
+      t
     } = this.props;
     if (!isOpen) return null;
     if (commentsLoading) return <Loader />;
@@ -40,7 +42,11 @@ class CommentList extends Component {
 
     return (
       <div className="comment-list--body">
-        {comments.length ? this.comments : <h3 className="comment-list--empty">No comments yet</h3>}
+        {comments.length ? (
+          this.comments
+        ) : (
+          <h3 className="comment-list--empty">{t("No comments yet")}</h3>
+        )}
         <CommentForm articleId={id} />
       </div>
     );
@@ -59,8 +65,8 @@ class CommentList extends Component {
   }
 
   render() {
-    const { isOpen, toggleOpen } = this.props;
-    const text = isOpen ? "hide comments" : "show comments";
+    const { isOpen, toggleOpen, t } = this.props;
+    const text = t(isOpen ? "hide comments" : "show comments");
     return (
       <div>
         <UserConsumer>{(user) => <h3>Username: {user}</h3>}</UserConsumer>
@@ -82,7 +88,7 @@ class CommentList extends Component {
 export default connect(
   null,
   { loadArticleComments }
-)(toggleOpen(CommentList));
+)(toggleOpen(i18n(CommentList)));
 
 /*
 props comments который приходит из connect, он имеет больший приоритет, чем собстенный props компонента, поэтому у нас нет конфликта имён(они как бы перезатираются), мы в connect обращаемся к comments самого компонента, это массив id'шников который приходит из article.js, дальше на основе этого массива высчитываем все комментарии и записываем в свойство comments, теперь в компоненте в this.props.comments приходит массив с комментриями из connect

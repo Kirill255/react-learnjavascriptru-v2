@@ -7,6 +7,7 @@ import Comment from "../comment";
 import Loader from "../loader";
 import CommentForm from "../comment-form/comment-form";
 import toggleOpen from "../../decorators/toggleOpen";
+import { Consumer as UserConsumer } from "../../contexts/user";
 import "./style.css";
 
 class CommentList extends Component {
@@ -62,6 +63,7 @@ class CommentList extends Component {
     const text = isOpen ? "hide comments" : "show comments";
     return (
       <div>
+        <UserConsumer>{(user) => <h3>Username: {user}</h3>}</UserConsumer>
         <button onClick={toggleOpen} className="comment-list--btn">
           {text}
         </button>

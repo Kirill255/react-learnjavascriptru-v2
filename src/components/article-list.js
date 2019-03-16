@@ -32,6 +32,7 @@ export class ArticleList extends Component {
   }
 
   render() {
+    console.log("---", "rendering article list");
     if (this.props.loading) return <Loader />;
     return <ul>{this.body}</ul>;
   }
@@ -44,7 +45,9 @@ export default connect(
       loading: articlesLoadingSelector(state)
     };
   },
-  { fetchData: loadAllArticles }
+  { fetchData: loadAllArticles },
+  null,
+  { pure: false }
 )(ArticleList);
 
 /*

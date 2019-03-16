@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Route, NavLink, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
+import Menu, { MenuItem } from "./components/menu/menu";
 import Articles from "./components/routes/articles";
 import Comments from "./components/routes/comments";
 import UserForm from "./components/user-form";
@@ -11,33 +12,16 @@ class App extends Component {
     return (
       <div>
         <UserForm />
-        <div>
-          <div>
-            <NavLink to="/" exact activeStyle={{ color: "red" }}>
-              Home
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/counter" activeStyle={{ color: "red" }}>
-              Counter
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/filters" activeStyle={{ color: "red" }}>
-              Filters
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/articles" activeStyle={{ color: "red" }}>
-              Articles
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/comments" activeStyle={{ color: "red" }}>
-              Comments
-            </NavLink>
-          </div>
-        </div>
+        <Menu>
+          <MenuItem path="/" exact>
+            Home
+          </MenuItem>
+          <MenuItem path="/counter">Counter</MenuItem>
+          <MenuItem path="/filters">Filters</MenuItem>
+          <MenuItem path="/articles">Articles</MenuItem>
+          <MenuItem path="/comments">Comments</MenuItem>
+        </Menu>
+
         <Switch>
           <Redirect from="/" to="/articles" exact />
           <Route path="/counter" component={Counter} exact />
